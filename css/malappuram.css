@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+img{
+    width: 100%;
+    height: 550px;
+}
+p{
+    font-size: 1.3em;
+    padding: 2em;
+}
+.places{
+    width: 70%;
+    margin-left: 13.5em;
+    
+}

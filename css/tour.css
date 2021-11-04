@@ -1,0 +1,66 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none; 
+}
+body{
+    background-size: cover;
+}
+header{
+    background-color: olivedrab;
+    height: 6em;
+}
+/* img{ */
+    /* width: 100em;
+    height: 10em;
+} */
+.head{
+    
+    float: right;
+    margin-right: 10%;
+    margin-top: 2.5em;
+}
+.head a{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    border: 2px solid whitesmoke;
+    margin-left: 13px;
+   padding: 0.5em;
+   color: wheat;
+
+}
+
+p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:black;
+    
+}
+.image img{
+    /* position: absolute; */
+    width: 30em;
+    height: 20em;
+    padding-left: 1%;
+    padding-top: 1.7em;
+}
+.image p{
+   
+    margin-left: 9em;
+     padding-top: 1em; 
+    font-size: 1.5em;
+   
+}
+
+.image1 img{
+   
+    width: 30em;
+    height: 20em;
+    padding-left: 12%;
+    padding-top: 1.7em;
+}
+footer{
+    background-color: rgba(0, 100, 0, 0.733);
+    margin-top: 4%;
+    height: 60px;
+    font-size: 1.5em;
+    
+}
