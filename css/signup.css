@@ -1,3 +1,5 @@
+
+  
 form.Signup {
     border: 1px solid #ddd;
     padding: 0px 20px;
@@ -42,4 +44,30 @@ label.term-policy {
 }
 p.not-yet {
     text-align: center;
+}
+#meter_wrapper
+{
+ border:1px solid grey;
+ background-color: lightsteelblue;
+  margin-left:1%;
+ margin-top:10px; 
+ width:500px;
+ height:7px;
+ position: absolute;
+ border-radius: 3px;
+ 
+}
+#meter
+{
+   margin-right: -0.1px;
+ margin-top:-0.5px; 
+ width:0px;
+ height:7px;
+ border-radius:3px;
+ position: relative;
+z-index: 2;
+
+}
+#pa{
+color: slategrey ;
 }
