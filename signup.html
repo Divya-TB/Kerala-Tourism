@@ -18,26 +18,37 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <!-- Sign Up form -->
-        <form action="district.html" class="Signup">
+        <form action="district.html" class="Signup" onsubmit="return sign();">
           <h3>SIGN NOW..</h3>
           <div class="form-group">
               <label for="name">Full Name</label>
-            <input type="text" class="form-control" placeholder="Full Name" name="name" required>
+            <input type="text" class="form-control" placeholder="Full Name" name="name" id="name" >
           
           <br><br>
+
+          <label for="phonenumber">Phone Number</label>
+          <input type="number" class="form-control" placeholder="Enter phone number" name="phonenum" id="ph-num" >
+        
+        <br><br>   
           
               <label for="email">Email</label>
-            <input type="text" class="form-control" placeholder="Enter Email" name="email" required>
+            <input type="text" class="form-control" placeholder="Enter Email" name="email" id="email" >
           
           <br><br>   
           
               <label for="psw">Password</label>
-            <input type="password" class="form-control" placeholder="Enter Password" name="psw" required> 
-          
-          <br><br>
+            <input type="password" class="form-control" placeholder="Enter Password" name="psw" id="pwd"  onkeyup="return passwordChanged();" > 
+            <br>
+            <div id="meter_wrapper"> 
+              <div id="meter"></div>
+              </div> 
+             <br>
+            
+            <span id="strength"></span>
+            <p id="pa">minimum of 8 charcters , uppercase and lowercase,one number, and one symbol</p>
           
             <label for="psw-repeat">Repeat Password</label>
-            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" required>
+            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" id="pwd-repeat" >
           
           <br><br>
           
@@ -47,16 +58,143 @@
           
           <br><br>
          
-            <label class="term-policy"><input type="checkbox"> By creating an account you agree to our <a href="#">Terms & Privacy</a>.</label>
+            <label class="term-policy"><input type="checkbox" id="check" required> By creating an account you agree to our <a href="#">Terms & Privacy</a>.</label>
           </div><br><br>
           <button type="submit" class="btn btn-success">Signup</button>
           <br><br>
-          <label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+          <label><input type="checkbox" checked="checked" name="remember" required> Remember me</label>
           <hr>
           <div class="form-group">
             <p class="not-yet">Already have an account? <a href="#">Login</a></p>
           </div>
         </form>
+        <script>
+
+         let pass = document.getElementById("pwd");
+         let fullname = document.getElementById("name");
+         let phonenum = document.getElementById("ph-num");
+         let emails = document.getElementById("email");
+         let pass2 = document.getElementById("pwd-repeat");
+
+        function sign() {
+          
+          let regexp = /^([A-Za-z0-9\.-]+)@([A-Za-z]+).([a-z]{2,3})(.[a-z]{2,3}?)$/;
+        
+            if (fullname.value.trim()=="") {
+              alert("fullname field is mandatory");
+              fullname.style.border="2px solid red";
+              return false;
+              
+            } 
+
+            else if(phonenum.value.trim()==""){
+              alert("phone number field is mandatory");
+              phonenum.style.border="2px solid red";
+              return false;
+            }
+
+            else if(phonenum.value.length!=10){
+              alert("phone number contains 10 numbers");
+              return false;
+            }
+
+            else if(emails.value.trim()==""){
+              alert("email field is mandatory");
+              email.style.border="2px solid red";
+              return false;
+            }
+
+            else if(!regexp.test(emails.value)){
+              alert("provide valid email id:");
+              email.style.border="2px solid red";
+              return false;
+              }
+
+              else if(pass.value.trim()==""){
+                alert("password fiels is mandatory");
+                 pass.style.border="2px solid red";
+                 return false;
+               }
+
+                else if(pass2.value.trim()=="")
+                {
+                  alert("repeat password fied is mandatory");
+                return false;
+                }
+
+               else if(pass.value!=pass2.value)
+               {
+               alert("password is not same");
+               return false;
+              }
+
+               else{
+              return true;
+
+            }
+          }  
+            
+          $(document).ready(function(){
+ $("#pwd").keyup(function(){
+  check_pass();
+ });
+});
+
+function check_pass()
+{
+ var val=document.getElementById("pwd").value;
+ var meter=document.getElementById("meter");
+ var no=0;
+ if(val!="")
+ {
+  // If the password length is less than  8
+  if(val.length<8 && (val.match(/[a-z]/) ||val.match(/\d+/)))no=1;
+
+  // If the password length is greater than 8 and contain any lowercase alphabet or any number 
+  if(val.length>=8 && (val.match(/[a-z]/) && val.match(/\d+/))||(val.match(/\d+/) && val.match(/[A-Z]/)))no=2;
+
+  // If the password length is greater than 8 and contain alphabet,number,special character respectively
+  if(val.length>8 && ((val.match(/[a-z]/)  && val.match(/\d+/)) || (val.match(/\d+/) && val.match(/[A-Z]/)) || (val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))))no=3;
+
+  // If the password length is greater than 6 and must contain alphabets,numbers and special characters
+  if(val.length>8 && val.match(/[a-z]/) && val.match(/[A-Z]/) && val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))no=4;
+
+  if(no==1)
+  {
+   $("#meter").animate({width:'125px'},500);
+   meter.style.backgroundColor="red";
+   document.getElementById("strength").innerHTML="Very Weak";
+  }
+
+  if(no==2)
+  {
+   $("#meter").animate({width:'250px'},500);
+   meter.style.backgroundColor="orange";
+   document.getElementById("strength").innerHTML="Weak";
+  }
+
+  if(no==3)
+  {
+   $("#meter").animate({width:'375px'},500);
+   meter.style.backgroundColor="yellow";
+   document.getElementById("strength").innerHTML="Good";
+  }
+
+  if(no==4)
+  {
+   $("#meter").animate({width:'500px'},500);
+   meter.style.backgroundColor="#00FF40";
+   document.getElementById("strength").innerHTML="Strong";
+  }
+ }
+
+ else
+ {
+  meter.style.backgroundColor="white";
+  document.getElementById("strength").innerHTML="";
+ }
+}
+    </script>
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@
             <a href="signup.html">SIGNUP</a>
         </div>
     </header>
-   <form action="district.html">
+   <form action="district.html" onsubmit="return login();">
             <div id="loginp">
                 <P align="center" style="font-size: 2.5em;" ><b>LOGIN</b></P>
             </div>
@@ -22,10 +22,10 @@
             <br>
             <div class="label">
                 <label >Username</label><br>
-                <input type="text" placeholder="username">
+                <input type="text" placeholder="username" id="usn"  >
                 <br><br>
                 <label >password</label><br>
-                <input type="password" placeholder="password">
+                <input  type="password" placeholder="password" id="pwd"  >
             </div>
                 <br>
                 <br>
@@ -41,8 +41,30 @@
             </div>
             
      </form>
+      
      <footer>
                 <p align="center" style="margin-top: 3em;"><i> login@2021</i></p>
     </footer>
+    <script>
+        let username = document.getElementById("usn");
+        let pass = document.getElementById("pwd");
+        function login() {
+            if (username.value.trim()=="") {
+                alert("username field is mandatory");
+                username.style.border="2px solid red";
+                return false;
+                
+            } else if(pass.value.trim()=="") {
+                alert("password is mandatory");
+                pass.style.border="2px solid red";
+                return false;
+                
+            }
+            else{
+                return true;
+            }
+            
+        }
+    </script>
     </body>
 </html>
